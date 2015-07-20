@@ -5,7 +5,7 @@ import com.macilias.games.model.Field;
 /**
  * Created by mac on 20.07.15.
  */
-public class Game implements A2048Game{
+public class Game implements A2048Game {
 
     private Field field;
     private static Game instance;
@@ -65,5 +65,31 @@ public class Game implements A2048Game{
     @Override
     public boolean isOver() {
         return false;
+    }
+
+    @VisibleForTesting
+    public int[] manipulateRow(int[] row) {
+
+        for (int i = row.length - 2; i >= 0; i--) {
+            boolean collated = false;
+            boolean stopped = false;
+            int current = row[i];
+            if (current != 0) {
+                for (int j = i; j < row.length -1  && !collated && !stopped; j++) {
+                    int next = row[j + 1];
+                    if (current == next) {
+                        collated = true;
+                        row[j + 1] = current * 2;
+                        row[j] = 0;
+                    } else if (next != 0) {
+                        stopped = true;
+                    } else {
+                        row[j + 1] = current;
+                        row[j] = 0;
+                    }
+                }
+            }
+        }
+        return row;
     }
 }
