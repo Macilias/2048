@@ -14,4 +14,8 @@ public interface A2048Game {
     Field moveUp();
 
     Field moveDown();
+
+    Field getField();
+
+    boolean isOver();
 }

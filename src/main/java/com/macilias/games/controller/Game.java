@@ -11,7 +11,12 @@ public class Game implements A2048Game{
     private static Game instance;
 
     private Game() {
-        field = new Field();
+        try {
+            field = new Field();
+        } catch (Exception e) {
+            // should never ever happen
+            e.printStackTrace();
+        }
     }
 
     private Game(int size) throws Exception {
@@ -34,23 +39,31 @@ public class Game implements A2048Game{
 
     @Override
     public Field moveLeft() {
-        return null;
+        return field;
     }
 
     @Override
     public Field moveRight() {
-        return null;
+        return field;
     }
 
     @Override
     public Field moveUp() {
-        return null;
+        return field;
     }
 
     @Override
     public Field moveDown() {
-        return null;
+        return field;
     }
 
+    @Override
+    public Field getField() {
+        return field;
+    }
 
+    @Override
+    public boolean isOver() {
+        return false;
+    }
 }
