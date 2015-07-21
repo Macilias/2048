@@ -95,4 +95,17 @@ public class GameTests {
         Assert.assertArrayEquals("Collision stop without distance", row2_result, game.manipulateRow(row2));
     }
 
+    // The resulting tile cannot merge with another tile again in the same move.
+    @Test
+    public void testOnlyOneCollisionPerTile() {
+        int[] row1 = {8, 4, 2, 2};
+        int[] row1_result = {0, 8, 4, 4};
+        Assert.assertArrayEquals("Collision stop without distance", row1_result, game.manipulateRow(row1));
+
+        int[] row2 = {4, 2, 2, 0};
+        int[] row2_result = {0, 0, 4, 4};
+        Assert.assertArrayEquals("Collision stop without distance", row2_result, game.manipulateRow(row2));
+    }
+
+
 }

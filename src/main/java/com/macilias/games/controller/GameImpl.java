@@ -9,8 +9,8 @@ import java.util.Random;
  */
 public class GameImpl implements Game {
 
-    private Field field;
     private static GameImpl instance;
+    private Field field;
     private boolean isOver = false;
     private Random random = new Random(467462421234L);
     private long score = 0L;
@@ -44,42 +44,53 @@ public class GameImpl implements Game {
 
     @Override
     public Field moveLeft() {
+        resetField();
         for (int i = 0; i < field.field.length; i++) {
             field.field[i] = reverse(manipulateRow(reverse(field.field[i])));
         }
-        addRandom();
-        return field;
+        return returnField();
     }
 
     @Override
     public Field moveRight() {
+        resetField();
         for (int i = 0; i < field.field.length; i++) {
             field.field[i] = manipulateRow(field.field[i]);
         }
-        addRandom();
-        return field;
+        return returnField();
     }
-
 
     @Override
     public Field moveUp() {
+        resetField();
         int[][] temp = transpose(field.field);
         for (int i = 0; i < temp.length; i++) {
             temp[i] = reverse(manipulateRow(reverse(temp[i])));
         }
         field.field = transpose(temp);
-        addRandom();
-        return field;
+        return returnField();
     }
 
     @Override
     public Field moveDown() {
+        resetField();
         int[][] temp = transpose(field.field);
         for (int i = 0; i < temp.length; i++) {
             temp[i] = manipulateRow(temp[i]);
         }
         field.field = transpose(temp);
-        addRandom();
+        return returnField();
+    }
+
+
+    private void resetField() {
+        field.setChanged(false);
+    }
+
+    private Field returnField() {
+        if (field.isChanged()) {
+            addRandom();
+        }
         return field;
     }
 
@@ -102,6 +113,7 @@ public class GameImpl implements Game {
     @VisibleForTesting
     public int[] manipulateRow(int[] row) {
 
+        int collisionAt = 0;
         for (int i = row.length - 2; i >= 0; i--) {
             boolean collated = false;
             boolean stopped = false;
@@ -109,17 +121,20 @@ public class GameImpl implements Game {
             if (current != 0) {
                 for (int j = i; j < row.length - 1 && !collated && !stopped; j++) {
                     int next = row[j + 1];
-                    if (current == next) {
+                    if (current == next && collisionAt != j + 1) {
                         collated = true;
+                        collisionAt = j + 1;
                         int tile = current * 2;
                         row[j + 1] = tile;
                         row[j] = 0;
                         score += tile;
+                        field.setChanged(true);
                     } else if (next != 0) {
                         stopped = true;
                     } else {
                         row[j + 1] = current;
                         row[j] = 0;
+                        field.setChanged(true);
                     }
                 }
             }

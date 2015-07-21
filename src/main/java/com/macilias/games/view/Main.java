@@ -69,11 +69,11 @@ public class Main {
         for (int i = 0; i < field.field.length; i++) {
             printSeparators(field);
             for (int j = 0; j < field.field.length; j++) {
-							  String value = String.valueOf(field.field[i][j]);
-							  String space = "";
-							  for(int k = 0; k < 4 - value.length(); k++) {
-									space += " ";
-								}
+                String value = String.valueOf(field.field[i][j]);
+                String space = "";
+                for (int k = 0; k < 4 - value.length(); k++) {
+                    space += " ";
+                }
                 System.out.print(String.format("| %s%s ", space, value));
                 if (j == field.field.length - 1) {
                     System.out.println("|");
