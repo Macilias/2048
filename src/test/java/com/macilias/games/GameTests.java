@@ -1,6 +1,6 @@
 package com.macilias.games;
 
-import com.macilias.games.controller.Game;
+import com.macilias.games.controller.GameImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,11 +10,11 @@ import org.junit.Test;
  */
 public class GameTests {
 
-    Game game = null;
+    GameImpl game = null;
 
     @Before
     public void init() {
-        game = Game.getInstance();
+        game = GameImpl.getInstance();
     }
 
 

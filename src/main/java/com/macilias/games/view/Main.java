@@ -1,7 +1,7 @@
 package com.macilias.games.view;
 
-import com.macilias.games.controller.A2048Game;
 import com.macilias.games.controller.Game;
+import com.macilias.games.controller.GameImpl;
 import com.macilias.games.model.Field;
 
 import java.util.Scanner;
@@ -17,17 +17,17 @@ public class Main {
         Scanner s = new Scanner(System.in);
 
         System.out.println("Welcome to 2048");
-        A2048Game game = null;
+        Game game = null;
 
         while (game == null) {
             System.out.println("how many fields do you wish to play?");
             if (!s.hasNextInt()) {
-                game = Game.getInstance();
+                game = GameImpl.getInstance();
             } else {
                 int size = s.nextInt();
                 System.out.println(String.format("ok, let´s go with %d", size));
                 try {
-                    game = Game.getInstance(size);
+                    game = GameImpl.getInstance(size);
                 } catch (Exception e) {
                     System.out.println(String.format("the desired size %d is not valid, you should choose at least 4x4", size));
                 }
@@ -69,7 +69,12 @@ public class Main {
         for (int i = 0; i < field.field.length; i++) {
             printSeparators(field);
             for (int j = 0; j < field.field.length; j++) {
-                System.out.print(String.format("| %d ", field.field[i][j]));
+							  String value = String.valueOf(field.field[i][j]);
+							  String space = "";
+							  for(int k = 0; k < 4 - value.length(); k++) {
+									space += " ";
+								}
+                System.out.print(String.format("| %s%s ", space, value));
                 if (j == field.field.length - 1) {
                     System.out.println("|");
                 }
@@ -79,7 +84,7 @@ public class Main {
     }
 
     private static void printSeparators(Field field) {
-        for (int k = 0; k < field.field.length * 4; k++) {
+        for (int k = 0; k < field.field.length * 7; k++) {
             if (k == 0) {
                 System.out.print("|");
             } else {
