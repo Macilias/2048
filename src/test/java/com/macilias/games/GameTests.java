@@ -44,11 +44,11 @@ public class GameTests {
     public void testDoubleCollision() {
         int[] row1 = {2, 2, 2, 2};
         int[] row1_result = {0, 0, 4, 4};
-        Assert.assertArrayEquals("Collision with distance", row1_result, game.manipulateRow(row1));
+        Assert.assertArrayEquals("Double collision", row1_result, game.manipulateRow(row1));
 
         int[] row2 = {4, 4, 8, 8};
         int[] row2_result = {0, 0, 8, 16};
-        Assert.assertArrayEquals("Collision with distance", row2_result, game.manipulateRow(row2));
+        Assert.assertArrayEquals("Double collision", row2_result, game.manipulateRow(row2));
     }
 
     @Test

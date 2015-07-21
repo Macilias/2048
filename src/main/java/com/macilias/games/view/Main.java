@@ -5,7 +5,6 @@ import com.macilias.games.controller.Game;
 import com.macilias.games.model.Field;
 
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 /**
  * Created by mac on 20.07.15.
@@ -16,7 +15,6 @@ public class Main {
     public static void main(String... args) {
 
         Scanner s = new Scanner(System.in);
-        Pattern p = Pattern.compile("[adws]+");
 
         System.out.println("Welcome to 2048");
         A2048Game game = null;
@@ -63,6 +61,7 @@ public class Main {
                 }
             }
         }
+        System.out.println(String.format("Your Score is %d", game.getScore()));
         s.close();
     }
 

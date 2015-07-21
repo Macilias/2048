@@ -18,4 +18,6 @@ public interface A2048Game {
     Field getField();
 
     boolean isOver();
+
+    long getScore();
 }
