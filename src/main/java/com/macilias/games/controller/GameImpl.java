@@ -88,7 +88,7 @@ public class GameImpl implements Game {
     }
 
     private Field returnField() {
-        if (field.isChanged()) {
+        if (field.isChanged() && slotsOpen()) {
             addRandom();
         }
         return field;
@@ -162,16 +162,14 @@ public class GameImpl implements Game {
     }
 
     private void addRandom() {
-        if (slotsOpen()) {
-            boolean inserted = false;
-            while (!inserted) {
-                int rx = random.nextInt(field.field.length);
-                int ry = random.nextInt(field.field.length);
-                if (field.field[rx][ry] == 0) {
-                    int rv = random.nextInt(9) == 0 ? 4 : 2;
-                    field.field[rx][ry] = rv;
-                    inserted = true;
-                }
+        boolean inserted = false;
+        while (!inserted) {
+            int rx = random.nextInt(field.field.length);
+            int ry = random.nextInt(field.field.length);
+            if (field.field[rx][ry] == 0) {
+                int rv = random.nextInt(9) == 0 ? 4 : 2;
+                field.field[rx][ry] = rv;
+                inserted = true;
             }
         }
     }
