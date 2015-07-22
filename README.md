@@ -26,22 +26,22 @@ This can be done by moving all ties with 'a' (left), 'd' (right), 'w' (up) and '
 
 Of course you are free to add your own fancy UI by using the privided interface:
 
-public interface Game {
+        public interface Game {
 
-  Field moveLeft();
+            Field moveLeft();
 
-  Field moveRight();
+            Field moveRight();
 
-  Field moveUp();
+            Field moveUp();
 
-  Field moveDown();
+            Field moveDown();
 
-  Field getField();
+            Field getField();
 
-  boolean isOver();
+            boolean isOver();
 
-  long getScore();
-}
+            long getScore();
+        }
 
 Where the Field is a simple wrapper over a multi dimensional int[][] Array. The Field class can also easily be extended to provide serialization.
 
