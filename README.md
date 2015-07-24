@@ -3,11 +3,11 @@
 
 Like 2 play? You can run the game with:
 
-mvn package exec:java
+##mvn package exec:java
 
-Welcome to the 2048 wiki!
-
-All you need to play this game is a: 1. JAVA 1.8.0_45 jdk and 2. Maven 3.3.3
+All you need to play this game is a: 
+###1. JAVA 1.8.0_45 jdk and 
+###2. Maven 3.3.3
 
 The Game has by now a simple ASCII Interface wich looks like that:
 
