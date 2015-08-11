@@ -26,9 +26,9 @@ public class Main {
                 game = GameImpl.getInstance();
             } else {
                 int size = s.nextInt();
-                System.out.println(String.format("ok, let´s go with %d", size));
                 try {
                     game = GameImpl.getInstance(size);
+                    System.out.println(String.format("ok, let´s go with %d", size));
                 } catch (IllegalSizeException e) {
                     System.out.println(String.format("the desired size %d is not valid, you should choose at least 4x4", size));
                 }
