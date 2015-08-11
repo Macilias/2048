@@ -1,6 +1,7 @@
 package com.macilias.games.controller;
 
 import com.macilias.games.model.Field;
+import com.macilias.games.model.IllegalSizeException;
 
 import java.util.Random;
 
@@ -18,13 +19,13 @@ public class GameImpl implements Game {
     private GameImpl() {
         try {
             field = new Field();
-        } catch (Exception e) {
+        } catch (IllegalSizeException e) {
             // should never ever happen
             e.printStackTrace();
         }
     }
 
-    private GameImpl(int size) throws Exception {
+    private GameImpl(int size) throws IllegalSizeException {
         field = new Field(size);
     }
 
@@ -35,7 +36,7 @@ public class GameImpl implements Game {
         return instance;
     }
 
-    public static GameImpl getInstance(int size) throws Exception {
+    public static GameImpl getInstance(int size) throws IllegalSizeException {
         if (instance == null) {
             instance = new GameImpl(size);
         }

@@ -3,6 +3,7 @@ package com.macilias.games.view;
 import com.macilias.games.controller.Game;
 import com.macilias.games.controller.GameImpl;
 import com.macilias.games.model.Field;
+import com.macilias.games.model.IllegalSizeException;
 
 import java.util.Scanner;
 
@@ -28,7 +29,7 @@ public class Main {
                 System.out.println(String.format("ok, let´s go with %d", size));
                 try {
                     game = GameImpl.getInstance(size);
-                } catch (Exception e) {
+                } catch (IllegalSizeException e) {
                     System.out.println(String.format("the desired size %d is not valid, you should choose at least 4x4", size));
                 }
             }
